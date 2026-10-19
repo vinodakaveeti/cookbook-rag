@@ -54,7 +54,7 @@ class ChromaDB:
                 start=1,
         ):
             logger.info(f"\n--- Result {index} ---")
-            logger.info("Distance:", distance)
-            logger.info("Retrieved text:\n", document)
+            logger.info(f"Distance:{distance}\n")
+            logger.info(f"Retrieved text: {document}\n")
 
         return documents

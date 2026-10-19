@@ -2,16 +2,12 @@ import logging
 import httpx
 
 from fastapi import HTTPException
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 
 from constants import OLLAMA_URL, MODEL_NAME
 
 
 logger = logging.getLogger(__name__)
-
-
-
-from pydantic import BaseModel, Field
 
 
 class RecipeResponse(BaseModel):

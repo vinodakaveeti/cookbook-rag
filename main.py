@@ -14,6 +14,11 @@ from utils.vector_db import ChromaDB
 from utils.llm_model import call_llm
 
 logger = logging.getLogger(__name__)
+# Configure logging to show INFO and above, with a helpful format
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s"
+)
 
 db_obj = ChromaDB()
 
@@ -35,7 +40,7 @@ FILE_DIRECTORY = Path(f"./files")
 if not Path.exists(FILE_DIRECTORY):
     os.makedirs(FILE_DIRECTORY)
 
-@app.post("/add-document")
+@app.post("/add-documents")
 def add_document(file: UploadFile = File(...)):
 
     if not file.filename or Path(file.filename).suffix.lower() != ".pdf":
