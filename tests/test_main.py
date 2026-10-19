@@ -41,7 +41,7 @@ def test_search_api(mock_embedding_chunks, mock_search_cookbook, mock_call_llm):
 
     assert response.status_code == 200
     # The endpoint returns the plain string from call_llm
-    assert response.json() == mock_call_llm.return_value
+    assert response.text == mock_call_llm.return_value
 
 
 @patch("main.ChromaDB.upsert_to_db")
@@ -49,11 +49,11 @@ def test_search_api(mock_embedding_chunks, mock_search_cookbook, mock_call_llm):
 @patch("main.chunk_recipe")
 @patch("main.read_file")
 def test_upload_api(mock_read_file, mock_chunk_recipe, mock_embedding_chunks, mock_chroma_upsert):
-    mock_read = Mock()
-    mock_read.return_value = ["page1", "page2"]  # read_file returns pages
+    mock_read_file.return_value = ["page1", "page2"]  # read_file returns pages
     mock_chunk_recipe.return_value = ["chunk1", "chunk2"]  # chunk_recipe returns chunks
-    mock_embedding_chunks.return_value = Mock()
-    mock_embedding_chunks.return_value.embeddings = [1.0, 2.4]  # embedding_chunks returns object with embeddings
+    mock_embedding_result = Mock()
+    mock_embedding_result.embeddings = [1.0, 2.4]  # embedding_chunks returns object with embeddings
+    mock_embedding_chunks.return_value = mock_embedding_result
     mock_chroma_upsert.return_value = "Total of 2 chunks have been added to DB"
 
     # Create a dummy PDF file content for testing
