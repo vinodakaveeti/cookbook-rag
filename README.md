@@ -1,3 +1,8 @@
+---
+title: Cookbook RAG
+sdk: docker
+app_port: 8080
+---
 # Cookbook RAG System
 
 A Retrieval-Augmented Generation (RAG) system for searching cookbook recipes using local LLMs via Ollama.

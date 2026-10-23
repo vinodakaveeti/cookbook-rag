@@ -1,8 +1,9 @@
 import ollama
 
+from constants import EMBEDDING_MODEL
+
 def embedding_chunks(chunks: list[str]):
-    # texts = [chunk["text"] for chunk in chunks]
     return ollama.embed(
-        model="nomic-embed-text",
+        model=EMBEDDING_MODEL,
         input=chunks,
     )
